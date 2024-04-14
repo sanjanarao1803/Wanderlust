@@ -7,6 +7,9 @@ const ejsMate = require("ejs-mate");
 
 const Listing = require("./models/listing.js"); //requiring listing collection
 
+//review
+const Review = require("./models/review.js");
+
 //wrapAsync
 const wrapAsync = require("./utils/wrapAsync.js");
 //ExpressError
@@ -144,6 +147,21 @@ app.get("/listings/:id",wrapAsync(async(req,res)=>{
     const listing = await Listing.findById(id);
     res.render("listings/show.ejs",{listing});
 }));
+
+//REVIEWS
+//POST ROUTE
+app.post("/listings/:id/reviews" , async(req,res) => {
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review(req.body.review);
+
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+
+    res.redirect(`/listings/${listing._id}`);
+
+})
 
 //basic route
 app.get("/",(req,res)=>{
