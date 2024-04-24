@@ -5,18 +5,18 @@ const mongoose=require("mongoose");
 const path=require("path");
 //put,delete from post
 const methodOverride = require("method-override");
-//ejs-mate
 const ejsMate = require("ejs-mate");
-//ExpressError
 const ExpressError = require("./utils/ExpressError.js");
-//session
 const session = require("express-session");
-//flash
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
 
 //express router
-const listings=require("./routes/listing.js");
-const reviews=require("./routes/reviews.js");
+const listingRouter=require("./routes/listing.js");
+const reviewRouter=require("./routes/reviews.js");
+const userRouter=require("./routes/user.js");
 
 //connecting with wanderlust db
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust"
@@ -42,7 +42,7 @@ app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
 //static file - public folder
 app.use(express.static(path.join(__dirname,"/public")));
-
+//session
 const sessionOptions = {
     secret:"mysupersecretcode",
     resave:false,
@@ -53,23 +53,42 @@ const sessionOptions = {
         httpOnly:true,
     },
 };
-app.use(session(sessionOptions));
-app.use(flash());
-
-app.use((req,res,next) => {
-    res.locals.success=req.flash("success");
-    res.locals.error=req.flash("error");
-    next();
-})
 
 //basic route
 app.get("/",(req,res)=>{
     res.send("Hi, I am root");
 });
 
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//flash
+app.use((req,res,next) => {
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    next();
+})
+
+app.get("/demouser",async(req,res)=>{
+    let fakeUser = new User({
+        email:"student@gmail.com",
+        username:"delta-student"
+    });
+    let registeredUser = await User.register(fakeUser,"hellopassword");
+    res.send(registeredUser);
+})
+
 //express router
-app.use("/listings",listings);
-app.use("/listings/:id/reviews",reviews);
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+app.use("/",userRouter);
 
 //ERROR HANDLING
 //page not found error
