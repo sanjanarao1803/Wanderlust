@@ -1,0 +1,78 @@
+/* Global styles */
+.new_page {
+    padding: 20px auto;
+    margin-top: 4rem !important;
+    margin-bottom: 8rem !important;
+  }
+  
+  .new_page_title {
+    text-align: center;
+  }
+  
+  #new_page {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .new_page_form-label {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0 !important;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 6px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* height: 45px; */
+  }
+  
+  .invalid-feedback {
+    color: red;
+  }
+  
+  .valid-feedback {
+    color: green;
+  }
+
+  .invalid-feedback,
+  .valid-feedback {
+    position: relative;
+    font-size: 0.8rem;
+    bottom: 0.8rem;
+    left: 0;
+  }
+  
+  .add_btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff385c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 1rem !important;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add_btn :hover {
+    background-color: #d63253;
+  }
+  
+  @media only screen and (max-width: 576px) {
+    .new_page {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media only screen and (max-width: 375px) {
+    .new_page {
+      max-width: 275px;
+      margin: 0 auto;
+    }
+  }

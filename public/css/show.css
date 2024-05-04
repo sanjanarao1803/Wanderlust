@@ -1,0 +1,127 @@
+
+.show-page {
+    max-width: 35vw;
+    margin: 0 auto;
+    padding: 20px;
+    margin-bottom: 3rem;
+  }
+  
+  .listing-details {
+    width: 100%;
+  }
+  .title h3 {
+    margin-top: 0;
+  }
+  
+  .show-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .card-body {
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .card-text {
+    margin: 0;
+    padding: 3px 0;
+  }
+    
+  .show-page .btns {
+    display: flex;
+  }
+  
+  .edit_btn,
+  .delete_btn {
+    padding: 8px 18px;
+    margin-right: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #dc3545;
+    text-decoration: none;
+  }
+  
+  .edit_btn,
+  .submit-btn {
+    background-color: #35a52b;
+  }
+  
+  .starability-result {
+    margin-bottom: 10px;
+  }
+  
+  .Delete_review {
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .submit-btn {
+    padding: 8px 20px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* textarea {
+    resize: vertical;
+    min-height: 10px;
+  } */
+  
+  .invalid-feedback {
+    color: #dc3545;
+  }
+  
+  .Reviews {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .Review {
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 10px;
+    border: 0.5px solid rgb(197, 197, 197);
+  }
+  
+  @media only screen and (max-width: 412px) {
+    .Delete_review {
+      margin-bottom: 0;
+    }
+    .Review .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    .show-page {
+      max-width: 50%;
+    }
+  }
+  @media only screen and (max-width: 462px) {
+    .show-page {
+      max-width: 75vw;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    .show-page {
+      max-width: 95vw;
+    }
+  }
